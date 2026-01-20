@@ -1,3 +1,4 @@
+import Guide from "@/components/Guide";
 import { InfoIcon } from "@/components/icons/InfoIcon";
 import ThemeGenerator from "@/components/ThemeGenerator";
 import ThemeToggle from "@/components/ui/theme-toggle";
@@ -36,6 +37,7 @@ export default function Home() {
           </div>
         </div>
         <ThemeGenerator />
+        <Guide />
       </main>
     </div>
   );
