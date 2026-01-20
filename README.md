@@ -20,7 +20,7 @@ A lightweight web-based utility for generating dynamic Tailwind CSS v4 themes fo
 
 1. Clone the repository:
 ```bash
-git clone repo_url
+git clone https://github.com/gjermundmyrvang/Theme-Generator-Next.js.git
 ```
 
 2. Install dependencies:
