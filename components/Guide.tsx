@@ -34,8 +34,9 @@ return <NextThemesProvider {...props}>{children}</NextThemesProvider>};`;
 export default function Guide() {
   return (
     <section className="mt-16 mb-16 border-t border-border pt-12">
-      <h2 className="text-3xl font-bold mb-6">Implementation Guide</h2>
-
+      <h2 className="text-3xl font-bold  uppercase tracking-tighter my-4">
+        Implementation Guide
+      </h2>
       <div className="grid gap-8 text-sm md:text-base">
         <div className="space-y-3">
           <h3 className="font-bold flex items-center gap-2">
