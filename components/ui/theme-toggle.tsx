@@ -2,9 +2,7 @@
 
 import { useTheme } from "next-themes";
 import { useEffect, useState } from "react";
-import { LaptopIcon } from "../icons/LaptopIcon";
-import { MoonIcon } from "../icons/MoonIcon";
-import { SunIcon } from "../icons/SunIcon";
+import { LaptopIcon, MoonIcon, SunIcon } from "../icons";
 
 export default function ThemeToggle() {
   const { theme, setTheme } = useTheme();

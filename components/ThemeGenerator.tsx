@@ -1,9 +1,8 @@
 "use client";
 
 import { useState } from "react";
-import { ColorIcon } from "./icons/ColorIcon";
-import { TrashIcon } from "./icons/TrashIcon";
 import CopyButton from "./ui/copy-button";
+import { ColorIcon, TrashIcon } from "./icons";
 
 export default function ThemeGenerator() {
   const defaultKeys = ["background", "foreground"];
