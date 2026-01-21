@@ -1,5 +1,5 @@
 import Guide from "@/components/Guide";
-import { InfoIcon } from "@/components/icons/InfoIcon";
+import { InfoIcon } from "@/components/icons";
 import ThemeGenerator from "@/components/ThemeGenerator";
 import ThemeToggle from "@/components/ui/theme-toggle";
 import Link from "next/link";
