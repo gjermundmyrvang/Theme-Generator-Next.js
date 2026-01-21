@@ -3,9 +3,12 @@
 import { useState } from "react";
 import CopyButton from "./ui/copy-button";
 import { ColorIcon, TrashIcon } from "./icons";
+import ThemePreview from "./ThemePreview";
 
 export default function ThemeGenerator() {
   const defaultKeys = ["background", "foreground"];
+  const [isAdding, setIsAdding] = useState(false);
+  const [newName, setNewName] = useState("");
 
   const [light, setLight] = useState<Record<string, string>>({
     background: "#fafafa",
@@ -68,11 +71,13 @@ body {
   };
 
   const addColor = () => {
-    const name = prompt("Enter color name (e.g. accent, success):");
-    if (name && !light[name.toLowerCase()]) {
-      const key = name.toLowerCase().replace(/\s+/g, "-");
-      setLight((prev) => ({ ...prev, [key]: "#3b82f6" })); // Default blå
-      setDark((prev) => ({ ...prev, [key]: "#3b82f6" }));
+    const formattedName = newName.toLowerCase().trim().replace(/\s+/g, "-");
+
+    if (formattedName && !light[formattedName]) {
+      setLight((prev) => ({ ...prev, [formattedName]: "#3b82f6" }));
+      setDark((prev) => ({ ...prev, [formattedName]: "#3b82f6" }));
+      setNewName("");
+      setIsAdding(false);
     }
   };
 
@@ -92,8 +97,9 @@ body {
   return (
     <section className="w-full">
       <div className="flex flex-col gap-4 mt-4">
-        <h2 className="text-3xl font-bold">Color Picker</h2>
-
+        <h2 className="text-3xl font-bold  uppercase tracking-tighter">
+          Color Picker
+        </h2>
         <div className="grid sm:grid-cols-2 gap-4 font-mono">
           {[
             {
@@ -151,21 +157,60 @@ body {
             </div>
           ))}
         </div>
-        <div className="flex justify-start">
-          <button
-            onClick={addColor}
-            className="px-6 py-2 rounded-full bg-primary cursor-pointer hover:bg-primary/80 transition-colors font-mono text-white font-bold"
-          >
-            <span className="flex gap-2">
-              <ColorIcon className="text-white" />
-              Add color
-            </span>
-          </button>
+        {/* ADD COLOR SECTION */}
+        <div className="flex justify-start items-center gap-2 h-10">
+          {!isAdding ? (
+            <button
+              onClick={() => setIsAdding(true)}
+              className="h-full px-6 rounded-full bg-primary cursor-pointer hover:opacity-90 transition-all font-mono text-white font-bold flex items-center gap-2 shadow-lg shadow-primary/20"
+            >
+              <ColorIcon className="text-white w-4 h-4" />
+              Add custom color
+            </button>
+          ) : (
+            <div className="flex items-center gap-2 h-full animate-in fade-in slide-in-from-left-2 duration-200">
+              <input
+                autoFocus
+                type="text"
+                placeholder="e.g. accent"
+                value={newName}
+                onChange={(e) => setNewName(e.target.value)}
+                onKeyDown={(e) => e.key === "Enter" && addColor()}
+                className="h-full px-4 rounded-xl border-2 border-primary bg-background font-mono text-sm outline-none w-48"
+              />
+              <button
+                onClick={addColor}
+                className="h-full px-4 bg-primary text-white rounded-xl font-bold text-sm hover:opacity-90 transition-all cursor-pointer"
+              >
+                Add
+              </button>
+              <button
+                onClick={() => {
+                  setIsAdding(false);
+                  setNewName("");
+                }}
+                className="h-full px-4 bg-muted text-muted-foreground rounded-xl font-bold text-sm hover:bg-muted/80 transition-all cursor-pointer"
+              >
+                Cancel
+              </button>
+            </div>
+          )}
+        </div>
+      </div>
+
+      {/* PREVIEW SECTION */}
+      <div className="mt-12 space-y-6">
+        <h2 className="text-3xl font-bold  uppercase tracking-tighter">
+          Live Preview
+        </h2>
+        <div className="grid md:grid-cols-2 gap-8">
+          <ThemePreview colors={light} title="Light Mode" />
+          <ThemePreview colors={dark} title="Dark Mode" />
         </div>
       </div>
 
       {/* CSS OUTPUT BOX */}
-      <div className="text-muted w-full flex justify-between items-center mt-8 mb-4">
+      <div className="text-muted w-full flex justify-between items-center mt-16 mb-4 border-t border-border pt-12">
         <h4 className="text-sm font-mono uppercase tracking-widest">
           Output: <span className="text-primary font-bold">globals.css</span>
         </h4>
