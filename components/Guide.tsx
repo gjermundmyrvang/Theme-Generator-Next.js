@@ -20,6 +20,17 @@ const layoutCode = `export default function RootLayout({
   );
 }`;
 
+const themeProvider = `"use client";
+
+import * as React from "react";
+import { ThemeProvider as NextThemesProvider } from "next-themes";
+
+export function ThemeProvider({
+children,
+...props
+}: React.ComponentProps<typeof NextThemesProvider>) {
+return <NextThemesProvider {...props}>{children}</NextThemesProvider>};`;
+
 export default function Guide() {
   return (
     <section className="mt-16 mb-16 border-t border-border pt-12">
@@ -38,7 +49,7 @@ export default function Guide() {
             to handle the dark mode switching logic in your Next.js application.
           </p>
           <div className="ml-8">
-            <CodeBlock code="npm install next-theme" />
+            <CodeBlock code="npm install next-themes" />
           </div>
         </div>
 
@@ -46,6 +57,18 @@ export default function Guide() {
           <h3 className="font-bold flex items-center gap-2">
             <span className="flex h-6 w-6 items-center justify-center rounded-full bg-primary text-[16px] text-white">
               2
+            </span>
+            Create ThemeProvider
+          </h3>
+          <div className="ml-8 space-y-4">
+            <CodeBlock code={themeProvider} />
+          </div>
+        </div>
+
+        <div className="space-y-4">
+          <h3 className="font-bold flex items-center gap-2">
+            <span className="flex h-6 w-6 items-center justify-center rounded-full bg-primary text-[16px] text-white">
+              3
             </span>
             Configure Layout
           </h3>
@@ -69,7 +92,7 @@ export default function Guide() {
         <div className="space-y-3">
           <h3 className="font-bold flex items-center gap-2">
             <span className="flex h-6 w-6 items-center justify-center rounded-full bg-primary text-[16px] text-white">
-              3
+              4
             </span>
             Update Global CSS
           </h3>
