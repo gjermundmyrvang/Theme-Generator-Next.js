@@ -15,6 +15,7 @@ export default function ThemePreview({ colors, title }: ThemePreviewProps) {
     "primary",
     "muted",
     "border",
+    "destructive",
   ];
 
   // Get all custom colors added by the user
@@ -72,6 +73,11 @@ export default function ThemePreview({ colors, title }: ThemePreviewProps) {
           {/* Uses: bg-muted, text-foreground */}
           <button className="px-4 py-2 bg-muted text-foreground text-xs font-bold rounded-lg border border-border cursor-not-allowed">
             Muted
+          </button>
+
+          {/* Uses: bg-destructive, text-foreground */}
+          <button className="px-4 py-2 bg-destructive text-black rounded-lg font-bold text-xs hover:opacity-80 transition-all cursor-pointer">
+            Delete
           </button>
 
           {/* Uses: bg-primary/10 (alpha), text-primary */}

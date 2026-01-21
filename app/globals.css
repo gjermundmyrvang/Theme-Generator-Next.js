@@ -5,8 +5,9 @@
   --foreground: #0f172a;
   --card: #ffffff;
   --primary: #4f46e5;
-  --muted: #4b5560;
+  --muted: #f1f5f9;
   --border: #e2e8f0;
+  --destructive: #ff6467;
 }
 
 .dark {
@@ -16,6 +17,7 @@
   --primary: #6366f1;
   --muted: #2e3f5b;
   --border: #1e293b;
+  --destructive: #ff6467;
 }
 
 @theme inline {
@@ -25,6 +27,7 @@
   --color-primary: var(--primary);
   --color-muted: var(--muted);
   --color-border: var(--border);
+  --color-destructive: var(--destructive);
 }
 
 body {

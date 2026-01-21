@@ -17,6 +17,7 @@ export default function ThemeGenerator() {
     primary: "#4f46e5",
     muted: "#f1f5f9",
     border: "#e2e8f0",
+    destructive: "#ff6467",
   });
 
   const [dark, setDark] = useState<Record<string, string>>({
@@ -26,6 +27,7 @@ export default function ThemeGenerator() {
     primary: "#6366f1",
     muted: "#1e293b",
     border: "#1e293b",
+    destructive: "#ff6467",
   });
 
   // Dynamically rendering variables
@@ -176,7 +178,7 @@ body {
                 value={newName}
                 onChange={(e) => setNewName(e.target.value)}
                 onKeyDown={(e) => e.key === "Enter" && addColor()}
-                className="h-full px-4 rounded-xl border-2 border-primary bg-background font-mono text-sm outline-none w-48"
+                className="h-full px-4 rounded-xl border-2 border-border bg-background font-mono text-sm outline-none w-48 focus:border-primary"
               />
               <button
                 onClick={addColor}
@@ -189,7 +191,7 @@ body {
                   setIsAdding(false);
                   setNewName("");
                 }}
-                className="h-full px-4 bg-muted text-muted-foreground rounded-xl font-bold text-sm hover:bg-muted/80 transition-all cursor-pointer"
+                className="h-full px-4 bg-destructive text-muted-foreground rounded-xl font-bold text-sm hover:opacity-80 transition-all cursor-pointer"
               >
                 Cancel
               </button>
@@ -210,7 +212,7 @@ body {
       </div>
 
       {/* CSS OUTPUT BOX */}
-      <div className="text-muted w-full flex justify-between items-center mt-16 mb-4 border-t border-border pt-12">
+      <div className="w-full flex justify-between items-center mt-16 mb-4 border-t border-border pt-12">
         <h4 className="text-sm font-mono uppercase tracking-widest">
           Output: <span className="text-primary font-bold">globals.css</span>
         </h4>
